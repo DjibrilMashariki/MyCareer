@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 250 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 250 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 250 20% 15%;
+
+    --primary: 250 66% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 280 45% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 250 20% 94%;
+    --muted-foreground: 250 10% 45%;
+
+    --accent: 250 40% 95%;
+    --accent-foreground: 250 66% 50%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 250 20% 90%;
+    --input: 250 20% 90%;
+    --ring: 250 66% 60%;
+
+    --radius: 0.75rem;
+
+    /* Status colors */
+    --status-draft: 220 14% 92%;
+    --status-draft-foreground: 220 10% 40%;
+    --status-submitted: 210 100% 90%;
+    --status-submitted-foreground: 210 80% 35%;
+    --status-changes: 32 100% 90%;
+    --status-changes-foreground: 32 80% 35%;
+    --status-approved: 140 70% 90%;
+    --status-approved-foreground: 140 60% 30%;
+
+    /* Gradient colors */
+    --gradient-start: 250 66% 65%;
+    --gradient-end: 280 50% 50%;
+
+    /* Sidebar */
+    --sidebar-background: 250 30% 18%;
+    --sidebar-foreground: 250 10% 90%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 250 30% 18%;
+    --sidebar-accent: 250 30% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 250 20% 25%;
+    --sidebar-ring: 250 66% 60%;
+  }
+
+  .dark {
+    --background: 250 30% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 250 30% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 250 30% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 250 66% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 280 45% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 250 20% 18%;
+    --muted-foreground: 250 10% 60%;
+
+    --accent: 250 30% 20%;
+    --accent-foreground: 250 66% 70%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 250 20% 20%;
+    --input: 250 20% 20%;
+    --ring: 250 66% 60%;
+
+    --sidebar-background: 250 30% 10%;
+    --sidebar-foreground: 250 10% 90%;
+    --sidebar-primary: 250 66% 70%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 250 30% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 250 20% 18%;
+    --sidebar-ring: 250 66% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .status-draft {
+    @apply bg-[hsl(var(--status-draft))] text-[hsl(var(--status-draft-foreground))];
+  }
+
+  .status-submitted {
+    @apply bg-[hsl(var(--status-submitted))] text-[hsl(var(--status-submitted-foreground))];
+  }
+
+  .status-changes {
+    @apply bg-[hsl(var(--status-changes))] text-[hsl(var(--status-changes-foreground))];
+  }
+
+  .status-approved {
+    @apply bg-[hsl(var(--status-approved))] text-[hsl(var(--status-approved-foreground))];
+  }
+}
