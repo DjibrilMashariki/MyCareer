@@ -140,6 +140,30 @@ sequenceDiagram
 
 ---
 
+## Activity Diagram
+
+```mermaid
+flowchart TD
+    A([Start]) --> B[Student logs in]
+    B --> C[Upload or update resume version]
+    C --> D[Submit resume]
+    D --> E{Staff available?}
+    E -- No --> F[Queue submission and notify admin]
+    F --> G([End])
+    E -- Yes --> H[Assign reviewer]
+    H --> I[Staff reviews resume]
+    I --> J{Meets standard?}
+    J -- No --> K[Set status: changes_required]
+    K --> L[Send feedback to student]
+    L --> M[Student revises resume]
+    M --> D
+    J -- Yes --> N[Set status: approved]
+    N --> O[Notify student]
+    O --> G([End])
+```
+
+---
+
 ## Entity-Relationship Diagram
 
 ```mermaid
