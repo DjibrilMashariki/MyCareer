@@ -106,6 +106,7 @@ This repo is a monorepo. The fastest deployment is to host only the Vite client 
    - `VITE_API_BASE_URL` = `https://<your-api-host>/api`
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
+   - Ensure `VITE_API_BASE_URL` includes the `/api` path and has no trailing slash.
 5. Deploy the Express server separately and ensure it is reachable at the URL used in `VITE_API_BASE_URL`.
 
 ## Goals
