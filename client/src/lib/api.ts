@@ -1,6 +1,8 @@
 import { Resume, ResumeStatus } from "./resumeData";
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/+$/, "");
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "/api")
+  .replace(/\/+$/, "")
+  .replace(/([^:]\/)\/+/g, "$1");
 const buildApiUrl = (endpoint: string) =>
   `${API_BASE_URL}${endpoint.startsWith("/") ? endpoint : `/${endpoint}`}`;
 
