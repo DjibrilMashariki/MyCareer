@@ -87,6 +87,27 @@ SUPABASE_URL=your_supabase_project_url
 SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
+Client (Vite) environment variables:
+
+```bash
+VITE_API_BASE_URL=https://your-api-host.com/api
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key-here
+```
+
+## Deploy on Vercel (Client) + External API
+
+This repo is a monorepo. The fastest deployment is to host only the Vite client on Vercel and run the Express API elsewhere (Render/Railway/Fly).
+
+1. Create a new Vercel project and set **Root Directory** to `client`.
+2. Set **Build Command** to `npm install && npm run build`.
+3. Set **Output Directory** to `dist`.
+4. Add Vercel environment variables:
+   - `VITE_API_BASE_URL` = `https://<your-api-host>/api`
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+5. Deploy the Express server separately and ensure it is reachable at the URL used in `VITE_API_BASE_URL`.
+
 ## Goals
 
 - Reduce average processing time from 1.5 weeks to 2-3 days
