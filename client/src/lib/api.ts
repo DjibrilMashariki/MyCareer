@@ -1,6 +1,8 @@
 import { Resume, ResumeStatus } from "./resumeData";
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/+$/, "");
+const buildApiUrl = (endpoint: string) =>
+  `${API_BASE_URL}${endpoint.startsWith("/") ? endpoint : `/${endpoint}`}`;
 
 // API Error handling
 class ApiError extends Error {
@@ -16,7 +18,7 @@ function getAuthHeaders(): Record<string, string> {
 }
 
 async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const response = await fetch(buildApiUrl(endpoint), {
     headers: {
       "Content-Type": "application/json",
       ...getAuthHeaders(),
@@ -101,7 +103,7 @@ export async function uploadResumeFile(
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await fetch(`${API_BASE_URL}/resumes/${resumeId}/upload`, {
+  const response = await fetch(buildApiUrl(`/resumes/${resumeId}/upload`), {
     method: "POST",
     headers: token ? { Authorization: `Bearer ${token}` } : {},
     body: formData,
@@ -185,7 +187,7 @@ export async function uploadTemplate(name: string, description: string, file: Fi
   formData.append("file", file);
   formData.append("name", name);
   formData.append("description", description);
-  const response = await fetch(`${API_BASE_URL}/templates`, {
+  const response = await fetch(buildApiUrl("/templates"), {
     method: "POST",
     headers: { ...getAuthHeaders() },
     body: formData,
@@ -199,7 +201,7 @@ export async function uploadTemplate(name: string, description: string, file: Fi
 
 export async function downloadTemplate(templateId: string): Promise<string> {
   // In demo mode this triggers a file download, in production returns a URL
-  return `${API_BASE_URL}/templates/${templateId}/download`;
+  return buildApiUrl(`/templates/${templateId}/download`);
 }
 
 export async function deleteTemplate(templateId: string): Promise<void> {
