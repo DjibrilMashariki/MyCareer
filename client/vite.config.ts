@@ -24,4 +24,37 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) {
+            return;
+          }
+
+          if (id.includes("react-router")) {
+            return "router";
+          }
+
+          if (id.includes("@tanstack/react-query")) {
+            return "react-query";
+          }
+
+          if (id.includes("@supabase/supabase-js")) {
+            return "supabase";
+          }
+
+          if (id.includes("recharts")) {
+            return "charts";
+          }
+
+          if (id.includes("@radix-ui")) {
+            return "radix-ui";
+          }
+
+          return "vendor";
+        },
+      },
+    },
+  },
 }));
