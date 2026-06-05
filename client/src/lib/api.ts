@@ -1,6 +1,6 @@
 import { Resume, ResumeStatus } from "./resumeData";
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/$/, "");
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/+$/, "");
 
 // API Error handling
 class ApiError extends Error {
